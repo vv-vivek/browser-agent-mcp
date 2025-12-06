@@ -25,19 +25,19 @@
     "headless-browser",
     "rpa"
   ],
-  "author": "dmviv",
+  "author": "vv-vivek <dmvivek.vv@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dmviv/browser-agent-mcp"
+    "url": "https://github.com/vv-vivek/browser-agent-mcp"
   },
-  "homepage": "https://github.com/dmviv/browser-agent-mcp#readme",
+  "homepage": "https://github.com/vv-vivek/browser-agent-mcp#readme",
   "bugs": {
-    "url": "https://github.com/dmviv/browser-agent-mcp/issues"
+    "url": "https://github.com/vv-vivek/browser-agent-mcp/issues"
   },
   "funding": {
     "type": "github",
-    "url": "https://github.com/sponsors/dmviv"
+    "url": "https://github.com/sponsors/vv-vivek"
   },
   "engines": {
     "node": ">=18.0.0"
