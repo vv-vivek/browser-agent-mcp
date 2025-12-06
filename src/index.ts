@@ -36,12 +36,13 @@ import { mobileTool, viewportTool } from './tools/mobile.js';
 import { iframeTool, iframeListTool, iframeClickTool } from './tools/iframe.js';
 import { dragTool, dragByOffsetTool } from './tools/drag.js';
 import { recordStartTool, recordStopTool } from './tools/record.js';
+import { solveCaptchaTool, getCaptchaInfoTool } from './tools/captcha.js';
 import { BrowserManager } from './browser.js';
 
 // Create server instance
 const server = new McpServer({
     name: 'browser-agent-mcp',
-    version: '2.2.0',
+    version: '2.3.0',
 });
 
 // Helper to register tools
@@ -122,6 +123,10 @@ registerTool(dragTool);
 registerTool(dragByOffsetTool);
 registerTool(recordStartTool);
 registerTool(recordStopTool);
+
+// Phase 7: CAPTCHA Solving
+registerTool(solveCaptchaTool);
+registerTool(getCaptchaInfoTool);
 
 // Graceful shutdown
 process.on('SIGINT', async () => {
