@@ -29,12 +29,19 @@ import { startCaptureRequestsTool, getRequestsTool, clearRequestsTool } from './
 import { startConsoleTool, getConsoleTool, clearConsoleTool } from './tools/console.js';
 import { getPerformanceTool } from './tools/performance.js';
 import { a11yCheckTool } from './tools/a11y.js';
+// Phase 6: Advanced Features
+import { keyboardTool, keyboardTypeTool } from './tools/keyboard.js';
+import { downloadTool, downloadClickTool } from './tools/download.js';
+import { mobileTool, viewportTool } from './tools/mobile.js';
+import { iframeTool, iframeListTool, iframeClickTool } from './tools/iframe.js';
+import { dragTool, dragByOffsetTool } from './tools/drag.js';
+import { recordStartTool, recordStopTool } from './tools/record.js';
 import { BrowserManager } from './browser.js';
 
 // Create server instance
 const server = new McpServer({
     name: 'browser-agent-mcp',
-    version: '2.0.0',
+    version: '2.2.0',
 });
 
 // Helper to register tools
@@ -100,6 +107,21 @@ registerTool(getConsoleTool);
 registerTool(clearConsoleTool);
 registerTool(getPerformanceTool);
 registerTool(a11yCheckTool);
+
+// Phase 6: Advanced Features
+registerTool(keyboardTool);
+registerTool(keyboardTypeTool);
+registerTool(downloadTool);
+registerTool(downloadClickTool);
+registerTool(mobileTool);
+registerTool(viewportTool);
+registerTool(iframeTool);
+registerTool(iframeListTool);
+registerTool(iframeClickTool);
+registerTool(dragTool);
+registerTool(dragByOffsetTool);
+registerTool(recordStartTool);
+registerTool(recordStopTool);
 
 // Graceful shutdown
 process.on('SIGINT', async () => {
