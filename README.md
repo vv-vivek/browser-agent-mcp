@@ -1,90 +1,147 @@
-# BrowserAgent MCP 🌐 v2.0.0
+# BrowserAgent MCP 🌐
 
-**BrowserAgent MCP** is a Model Context Protocol server that gives AI agents (like Claude) the ability to interact with the web using a real, headless browser.
+> Give AI the ability to browse the web. 37 automation tools for Claude Desktop.
 
-## 🚀 What it Does
+[![npm version](https://badge.fury.io/js/browser-agent-mcp.svg)](https://www.npmjs.com/package/browser-agent-mcp)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Acts as the "eyes and hands" of the AI on the internet with **37 tools** across 5 categories:
+## What It Does
 
-### Core Tools
-| Tool | Description |
-|------|-------------|
-| `browser_navigate(url)` | Go to a website |
-| `browser_screenshot()` | Take a picture of the page |
-| `browser_click(selector)` | Click an element |
-| `browser_type(selector, text)` | Type into a form field |
-| `browser_get_content(selector?)` | Read text from the page |
+BrowserAgent MCP is a [Model Context Protocol](https://modelcontextprotocol.io/) server that gives AI agents real browser control:
 
-### Phase 1: Essential Tools
-| Tool | Description |
-|------|-------------|
-| `browser_scroll(direction, amount?)` | Scroll page/to element |
-| `browser_wait(selector, timeout?)` | Wait for elements |
-| `browser_back()` / `browser_forward()` | Navigate history |
-| `browser_get_url()` / `browser_get_title()` | Get page info |
+- 🌐 **Navigate** to any website
+- 📸 **Screenshot** pages
+- 🖱️ **Click** buttons and links
+- ⌨️ **Type** into forms
+- 📜 **Scroll** and wait for elements
+- 🤖 **AI-powered** element finding (optional)
 
-### Phase 2: Power Tools
-| Tool | Description |
-|------|-------------|
-| `browser_hover(selector)` | Trigger hover states |
-| `browser_select(selector, value)` | Choose from dropdowns |
-| `browser_check(selector)` | Toggle checkboxes |
-| `browser_upload(selector, filePath)` | Upload files |
-| `browser_eval(script)` | Execute JavaScript |
-| `browser_get_links()` / `browser_get_html()` | Extract content |
+## Quick Start
 
-### Phase 3: AI-Enhanced Tools (Gemini API)
-| Tool | Description |
-|------|-------------|
-| `browser_smart_click(description)` | Click by natural language |
-| `browser_smart_type(field, text)` | Type by field description |
-| `browser_find_element(description)` | Find elements by AI |
-| `browser_summarize()` | AI page summary |
-| `browser_analyze_screenshot()` | Visual analysis |
+### 1. Install
 
-### Phase 4: Session & Auth Tools
-| Tool | Description |
-|------|-------------|
-| `browser_get/set/clear_cookies()` | Cookie management |
-| `browser_get/set/clear_storage()` | localStorage control |
-| `browser_new_tab(url?)` | Multi-tab support |
-| `browser_switch_tab(id)` / `browser_close_tab()` | Tab management |
-| `browser_list_tabs()` | See all tabs |
-| `browser_save_pdf(path?)` | Export as PDF |
-
-### Phase 5: Monitoring Tools
-| Tool | Description |
-|------|-------------|
-| `browser_capture_requests_start()` | Start network capture |
-| `browser_get_requests()` | Get captured requests |
-| `browser_console_start()` | Start console capture |
-| `browser_get_console()` | Get console logs |
-| `browser_get_performance()` | Core Web Vitals |
-| `browser_a11y_check()` | Accessibility audit |
-
-## 📦 Installation & Usage
-
-### 1. Build
 ```bash
-npm install
-npm run build
+npm install -g browser-agent-mcp
+npx playwright install chromium
 ```
 
 ### 2. Configure Claude Desktop
-Add to `claude_desktop_config.json`:
+
+Add to your `claude_desktop_config.json`:
+
+**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`  
+**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+
 ```json
-"browser-agent": {
-  "command": "node",
-  "args": ["c:\\Users\\dmviv\\antigrav\\browser-agent-mcp\\dist\\index.js"]
+{
+  "mcpServers": {
+    "browser-agent": {
+      "command": "npx",
+      "args": ["browser-agent-mcp"]
+    }
+  }
 }
 ```
 
-### 3. AI Features (Optional)
-Set `GEMINI_API_KEY` environment variable for AI-enhanced tools.
+### 3. Use It
 
-## 💡 Applications
-- **Automated Testing** — Visual regression, form testing
-- **Data Collection** — Web scraping, price monitoring
-- **Visual Verification** — Deployment checks
-- **Accessibility Audits** — a11y compliance
-- **Performance Monitoring** — Core Web Vitals
+Restart Claude Desktop and try:
+- *"Go to news.ycombinator.com and tell me the top 3 stories"*
+- *"Take a screenshot of google.com"*
+- *"Fill out this form..."*
+
+## All 37 Tools
+
+### Core
+| Tool | Description |
+|------|-------------|
+| `browser_navigate` | Go to a URL |
+| `browser_screenshot` | Capture the page |
+| `browser_click` | Click an element |
+| `browser_type` | Type text |
+| `browser_get_content` | Read page text |
+
+### Navigation
+| Tool | Description |
+|------|-------------|
+| `browser_scroll` | Scroll up/down |
+| `browser_wait` | Wait for element |
+| `browser_back` | Go back |
+| `browser_forward` | Go forward |
+| `browser_get_url` | Get current URL |
+| `browser_get_title` | Get page title |
+
+### Forms & Interaction
+| Tool | Description |
+|------|-------------|
+| `browser_hover` | Hover over element |
+| `browser_select` | Choose from dropdown |
+| `browser_check` | Toggle checkbox |
+| `browser_upload` | Upload file |
+| `browser_eval` | Run JavaScript |
+| `browser_get_links` | Extract all URLs |
+| `browser_get_html` | Get HTML source |
+
+### AI-Enhanced (requires Gemini API key)
+| Tool | Description |
+|------|-------------|
+| `browser_smart_click` | Click by description |
+| `browser_smart_type` | Type by field description |
+| `browser_find_element` | Find by natural language |
+| `browser_summarize` | AI page summary |
+| `browser_analyze_screenshot` | Visual analysis |
+
+### Session & Tabs
+| Tool | Description |
+|------|-------------|
+| `browser_get_cookies` | Get cookies |
+| `browser_set_cookies` | Set cookies |
+| `browser_clear_cookies` | Clear cookies |
+| `browser_get_storage` | Get localStorage |
+| `browser_set_storage` | Set localStorage |
+| `browser_new_tab` | Open new tab |
+| `browser_switch_tab` | Switch tabs |
+| `browser_close_tab` | Close tab |
+| `browser_list_tabs` | List all tabs |
+| `browser_save_pdf` | Save as PDF |
+
+### Monitoring
+| Tool | Description |
+|------|-------------|
+| `browser_capture_requests_start` | Monitor network |
+| `browser_get_requests` | Get network log |
+| `browser_console_start` | Monitor console |
+| `browser_get_console` | Get console log |
+| `browser_get_performance` | Core Web Vitals |
+| `browser_a11y_check` | Accessibility audit |
+
+## AI Features (Optional)
+
+For AI-powered tools, set the Gemini API key:
+
+```bash
+# Windows
+set GEMINI_API_KEY=your_key_here
+
+# macOS/Linux
+export GEMINI_API_KEY=your_key_here
+```
+
+Get a free key at [makersuite.google.com](https://makersuite.google.com/app/apikey)
+
+## Security
+
+See [SECURITY.md](./SECURITY.md) for security policy and considerations.
+
+**Key points:**
+- `browser_eval` runs in browser sandbox (safe)
+- No data is logged or stored
+- API keys read from environment only
+
+## License
+
+MIT © [vv-vivek](https://github.com/vv-vivek)
+
+---
+
+⭐ Star this repo if you find it useful!
