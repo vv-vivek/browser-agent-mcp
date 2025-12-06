@@ -1,5 +1,5 @@
 {
-  "name": "browser-agent-mcp",
+  "name": "@vivek3/browser-agent-mcp",
   "version": "2.0.0",
   "description": "MCP server that gives AI agents the ability to control a real browser - navigate, click, type, screenshot, and more. Works with Claude Desktop.",
   "main": "dist/index.js",

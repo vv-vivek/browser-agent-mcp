@@ -21,7 +21,7 @@ BrowserAgent MCP is a [Model Context Protocol](https://modelcontextprotocol.io/)
 ### 1. Install
 
 ```bash
-npm install -g browser-agent-mcp
+npm install -g @vivek3/browser-agent-mcp
 npx playwright install chromium
 ```
 
@@ -37,7 +37,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "browser-agent": {
       "command": "npx",
-      "args": ["browser-agent-mcp"]
+      "args": ["@vivek3/browser-agent-mcp"]
     }
   }
 }
