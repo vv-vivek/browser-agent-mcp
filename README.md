@@ -115,19 +115,30 @@ Restart Claude Desktop and try:
 | `browser_get_performance` | Core Web Vitals |
 | `browser_a11y_check` | Accessibility audit |
 
-## AI Features (Optional)
+## AI Features (Multiple LLM Options)
 
-For AI-powered tools, set the Gemini API key:
+Set **one** of these environment variables:
+
+| Provider | Environment Variable | Free Tier? |
+|----------|---------------------|------------|
+| **Google Gemini** | `GEMINI_API_KEY` | ✅ Yes |
+| **OpenAI GPT-4** | `OPENAI_API_KEY` | ❌ Paid |
+| **Anthropic Claude** | `ANTHROPIC_API_KEY` | ❌ Paid |
+| **Ollama (Local)** | `LLM_PROVIDER=ollama` | ✅ Free (local) |
 
 ```bash
-# Windows
+# Example: Use Gemini (free)
 set GEMINI_API_KEY=your_key_here
 
-# macOS/Linux
-export GEMINI_API_KEY=your_key_here
+# Example: Use OpenAI
+set OPENAI_API_KEY=sk-...
+
+# Example: Use local Ollama
+set LLM_PROVIDER=ollama
+# Make sure Ollama is running: ollama serve
 ```
 
-Get a free key at [makersuite.google.com](https://makersuite.google.com/app/apikey)
+**Auto-detection:** If multiple keys are set, priority is: Gemini → OpenAI → Anthropic → Ollama
 
 ## Security
 
